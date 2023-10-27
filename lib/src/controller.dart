@@ -89,6 +89,8 @@ class IntroController {
   /// You can return `false` if you want to prevent it from taking effect.
   final WillDoCallback? onWillClose;
 
+  final String? title;
+
   Intro? _intro;
   late final Map<int, GlobalKey> _keys;
   final Map<int, IntroParams> _targets = {};
@@ -104,6 +106,7 @@ class IntroController {
     this.onWillPrevious,
     this.onWillNext,
     this.onWillClose,
+    this.title,
   }) {
     assert(stepCount > 0, "The [stepCount] argument must be greater than 0.");
     _keys = Map.fromEntries(List.generate(stepCount,
@@ -265,6 +268,7 @@ class IntroController {
       onAnimationFinished: _onOverlayAnimationFinished,
       child: MaterialApp(
         theme: ThemeData.dark(),
+        title: title ?? '',
         home: Material(
           type: MaterialType.transparency,
           child: Stack(
